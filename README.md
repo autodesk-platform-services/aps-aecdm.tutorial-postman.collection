@@ -1,27 +1,59 @@
-# AEC Data Model API Postman Collection
+
+# AEC Data Model Step-by-Step Tutorial
+
+![Platforms](https://img.shields.io/badge/Web-Windows|MacOS-lightgray.svg)
+[![oAuth2](https://img.shields.io/badge/Authentication-v2-green.svg)](http://developer.autodesk.com/)
+[![AEC-Data-Model](https://img.shields.io/badge/AEC%20Data%20Model-V1-green.svg)](http://developer.autodesk.com/)
+
+[![Postman](https://img.shields.io/badge/Postman-v7-orange.svg)](https://www.getpostman.com/)
+
+![Beginner](https://img.shields.io/badge/Level-Beginner-green.svg)
+[![License](https://img.shields.io/:license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
+
 
 ## Description
-This repository contains API collection as follow for different purpose which could help you understand the usage of AEC Data Model API:
+This repository contains a set of API working as tutorial of AEC Data Model workflow to help you understand. The collection contains the GraphQL requests covering the [Step-by-Step Tutorials](https://aps.autodesk.com/en/docs/aecdatamodel/v1/tutorials/). Including all the tasks of [Basic Queries](https://aps.autodesk.com/en/docs/aecdatamodel/v1/tutorials/tutorial01/) and [Advanced Queries](https://aps.autodesk.com/en/docs/aecdatamodel/v1/tutorials/tutorial02/).
 
-- [AEC Data Model Tutorial](AEC-DM-Tutorial), includes a set of API working as tutorial of AEC Data Model workflow. The postman collection workflow mainly follow the [Step-by-Step Tutorials](https://aps.autodesk.com/en/docs/aecdatamodel/v1/tutorials/). 
+![Collection](resource/collection.png)
 
 
-## About the AEC Data Model Explorer
-AEC Data Model Explorer tool is another way to play with AEC Data Model. It provides a graphical user interface that allows you to view and edit data in AEC Data Model. For details, please refer to the [AEC Data Model Explorer documentation](https://aps.autodesk.com/en/docs/aecdatamodel/v1/explorer/).
+## Preparation before you begin:
+- Create APS App, get an ACC Account, integrate ACC account with your APS Client Key, refer [tutorial](https://tutorials.autodesk.io/#provision-access-in-other-products) for details, enable AEC Data Model in ACC Account Settings.
 
-## What's Postman?
-Postman is a popular tool that provides an easy-to-use interface to send HTTP requests. Postman is able to parse the responses that APS sends you and save response parameter values to variables. These parameters can then be reused in subsequent requests through these variables. The Postman collections in this repository use this ability to provide pre-populated HTTP requests to help you follow the tutorial workflow with minimal effort. You can also modify the requests and experiment without having to write a single line of code. 
 
-- You can learn how to install and use Postman from [here](https://learning.getpostman.com/docs/postman/launching_postman/installation_and_updates).
+## Tutorials of AEC Data Model
+### Prepare Environment Variables
+- Setup the environment variables, please specify your information as follow:
+    - client_id
+    - client_secret
+    - account_name
+    - project_name
+    - aec-dm-url
 
-- You can download the Postman installer from [here](https://www.getpostman.com/downloads/).
+### 3 Legged Token Setup
+- Get the Authorization for the collection, right click on the collection and select **Edit**, go to **Authorization** tab, make sure to use **OAuth 2.0** to get a 3 legged token, use it in the **Request Headers**.
+![3leggedToken](resource/3leggedToken.png)
+    - Callback URL: https://www.getpostman.com/oauth2/callback
+    - Auth URL: https://developer.api.autodesk.com/authentication/v2/authorize 
+    - Access Token URL: https://developer.api.autodesk.com/authentication/v2/token
+    - Include Scope: data:read
 
-## What next?
+### Getting Started
+- Task 1 – Get Hubs
+- Task 2 – Get Projects
+- Task 3 – Navigate to ElementGroups within a Project
+- Task 4 – Get Elements from a Category
 
-To follow a tutorial, click the corresponding link in the list of tutorials or navigate to the corresponding folder in this repository. The *readme.md* file in the folder provides instructions on how to follow that tutorial. 
+### Advanced Queries
+- Task 1 – Get ElementGroups Based on Metadata
+- Task 2 – Get Versions of an ElementGroup
+- Task 3 - Get Element Instances of a Particular Type
+- Task 4 - Get Element Instances in a Category by Version
+- Task 5 – Get Project Elements with Specific Properties
+- Task 6 – Get Elements with Specific Properties
 
 ## License
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
 
 ## Written by
-Zhong Wu [@johnonsoftware](https://twitter.com/johnonsoftware), [Autodesk Partner Development](http://forge.autodesk.com)
+Zhong Wu [@johnonsoftware](https://twitter.com/johnonsoftware), [APS Partner Development](http://forge.autodesk.com)
