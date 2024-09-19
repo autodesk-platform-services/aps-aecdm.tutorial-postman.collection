@@ -15,26 +15,26 @@ This folder contains a Postman Collection that contains the GraphQL requests cov
 
 
 ## Preparation before you begin:
-- [Create APS App, get an ACC Account, integrate ACC account with your APS Client Key](https://forge.autodesk.com/en/docs/bim360/v1/tutorials/getting-started/get-access-to-account/), enable AEC Data Model in ACC Account Settings.
+- Create APS App, get an ACC Account, integrate ACC account with your APS Client Key, refer [tutorial](https://tutorials.autodesk.io/#provision-access-in-other-products) for details, enable AEC Data Model in ACC Account Settings.
 
 
 ## Tutorials of AEC Data Model
-### 3 Legged Token Tutorial
-- Prepare Environment Variables: Setup the environment variables, please specify your information as follow:
+### Prepare Environment Variables
+- Setup the environment variables, please specify your information as follow:
     - client_id
     - client_secret
     - account_name
     - project_name
-
-    - base_domain
     - aec-dm-url
 
-- Prep Step 1: Please get the Authorization for the collection, right click on the collection and select **Edit**, go to **Authorization** tab, make sure to use **OAuth 2.0** to get a 3 legged token, use it in the **Request Headers**.
+### 3 Legged Token Setup
+- Get the Authorization for the collection, right click on the collection and select **Edit**, go to **Authorization** tab, make sure to use **OAuth 2.0** to get a 3 legged token, use it in the **Request Headers**.
 ![3leggedToken](resource/3leggedToken.png)
     - Callback URL: https://www.getpostman.com/oauth2/callback
     - Auth URL: https://developer.api.autodesk.com/authentication/v2/authorize 
     - Access Token URL: https://developer.api.autodesk.com/authentication/v2/token
     - Include Scope: data:read
+
 ### Getting Started
 - Task 1 – Get Hubs
 - Task 2 – Get Projects
@@ -48,7 +48,6 @@ This folder contains a Postman Collection that contains the GraphQL requests cov
 - Task 4 - Get Element Instances in a Category by Version
 - Task 5 – Get Project Elements with Specific Properties
 - Task 6 – Get Elements with Specific Properties
-
 
 ## License
 This sample is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT). Please see the [LICENSE](LICENSE) file for full details.
