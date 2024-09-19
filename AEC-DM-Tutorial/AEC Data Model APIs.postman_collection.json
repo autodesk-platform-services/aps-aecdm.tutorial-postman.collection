@@ -1,0 +1,648 @@
+{
+	"info": {
+		"_postman_id": "e4f13c1e-8c17-4d71-8eb9-9f5337968f67",
+		"name": "AEC Data Model Step-by-Step Tutorials",
+		"description": "This Collection contains the FDX intentful APIs.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "942004"
+	},
+	"item": [
+		{
+			"name": "Getting Started",
+			"item": [
+				{
+					"name": "Task 1 – Get Hubs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(pm.response.text());",
+									"",
+									"const hub_name = pm.environment.get(\"account_name\");",
+									"const hub = data.data.hubs.results.find( item=>item.name===hub_name );",
+									"if(hub != null ){",
+									"    pm.environment.set(\"aec_hub_id\", hub.id);",
+									"    console.log(\"find aec hub id\")",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/graphql",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IlU3c0dGRldUTzlBekNhSzBqZURRM2dQZXBURVdWN2VhIiwicGkuYXRtIjoiYXNzYyJ9.eyJzY29wZSI6WyJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIl0sImNsaWVudF9pZCI6ImRsNnBpS0FoMDVuR0VKYUFHb0NTYmkzeW05MkF2TnNCIiwiaXNzIjoiaHR0cHM6Ly9kZXZlbG9wZXIuYXBpLmF1dG9kZXNrLmNvbSIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tIiwianRpIjoicXA3QkFHenJ3dzZVdjZBY2xyNjE0anlsWWJhcWkyNWJZbGFLb3ZJSTVYVzNyM1VaOW1ZU0p3aW5BcHBxQ05QUCIsInVzZXJpZCI6IjRWNFdLUUpHR1E3TiIsImV4cCI6MTY4MjI1Nzc1OH0.ESq-Y3Y7PyzNELlKMC77haoAYWx_qmuSplz4xOl5XXTP2MPirZ-6z5okahmexcwWrNgkvFkOlJJdbVl47NiIwGvN5GkdFI0_pIXSg_gMqxaFw47jR-vvOeeUBSFMvCRDI_CwjLOOxLKWb7ymy3B0O-WDNGMrQNS0VsFSQNFFyB1gqdFgcCJtEaz2XMb88DeHC0VO0V3u1qlBxV4xdRjwmmpVaRGbB0fE5jt1-zXQLYtjfp_nHueRgQGxOBq9syJ0FIWyuLg7VJsdzpIUDhXlAJCaohRzC1JzkoJvY5T1Boweo4GXKAG4aWIIx1mjmnXOuCYfyrLG5VJ_nQEs30r63g ",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "# Step 1 – List hubs on your account\nquery GetHubs {\n  hubs {\n    results {\n      name\n      id\n    }\n  }\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Task 2 – Get Projects",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(pm.response.text());",
+									"",
+									"const project_name = pm.environment.get(\"project_name\");",
+									"const project = data.data.projects.results.find( item=>item.name===project_name );",
+									"if(project != null ){",
+									"    pm.environment.set(\"aec_project_id\", project.id);",
+									"    console.log(\"find aec project id\")",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/graphql",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IlU3c0dGRldUTzlBekNhSzBqZURRM2dQZXBURVdWN2VhIiwicGkuYXRtIjoiYXNzYyJ9.eyJzY29wZSI6WyJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIl0sImNsaWVudF9pZCI6ImRsNnBpS0FoMDVuR0VKYUFHb0NTYmkzeW05MkF2TnNCIiwiaXNzIjoiaHR0cHM6Ly9kZXZlbG9wZXIuYXBpLmF1dG9kZXNrLmNvbSIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tIiwianRpIjoicXA3QkFHenJ3dzZVdjZBY2xyNjE0anlsWWJhcWkyNWJZbGFLb3ZJSTVYVzNyM1VaOW1ZU0p3aW5BcHBxQ05QUCIsInVzZXJpZCI6IjRWNFdLUUpHR1E3TiIsImV4cCI6MTY4MjI1Nzc1OH0.ESq-Y3Y7PyzNELlKMC77haoAYWx_qmuSplz4xOl5XXTP2MPirZ-6z5okahmexcwWrNgkvFkOlJJdbVl47NiIwGvN5GkdFI0_pIXSg_gMqxaFw47jR-vvOeeUBSFMvCRDI_CwjLOOxLKWb7ymy3B0O-WDNGMrQNS0VsFSQNFFyB1gqdFgcCJtEaz2XMb88DeHC0VO0V3u1qlBxV4xdRjwmmpVaRGbB0fE5jt1-zXQLYtjfp_nHueRgQGxOBq9syJ0FIWyuLg7VJsdzpIUDhXlAJCaohRzC1JzkoJvY5T1Boweo4GXKAG4aWIIx1mjmnXOuCYfyrLG5VJ_nQEs30r63g ",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetProjects( $HubId: ID! ) {\n  projects(hubId: $HubId) {\n    pagination {\n      cursor\n    }\n    results {\n      id\n      name      \n    }\n  }\n}",
+								"variables": "{\n    \"HubId\": \"{{aec_hub_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Task 3 – Navigate to ElementGroups within a Project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = JSON.parse(pm.response.text());",
+									"",
+									"const element_group = data.data.elementGroupsByProject.results[0];",
+									"if(element_group != null ){",
+									"    pm.environment.set(\"aec_element_group_id\", element_group.id);",
+									"    console.log(\"find aec elemen group id\")",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/graphql",
+								"type": "default",
+								"disabled": true
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IlU3c0dGRldUTzlBekNhSzBqZURRM2dQZXBURVdWN2VhIiwicGkuYXRtIjoiYXNzYyJ9.eyJzY29wZSI6WyJkYXRhOndyaXRlIiwiZGF0YTpyZWFkIl0sImNsaWVudF9pZCI6ImRsNnBpS0FoMDVuR0VKYUFHb0NTYmkzeW05MkF2TnNCIiwiaXNzIjoiaHR0cHM6Ly9kZXZlbG9wZXIuYXBpLmF1dG9kZXNrLmNvbSIsImF1ZCI6Imh0dHBzOi8vYXV0b2Rlc2suY29tIiwianRpIjoicXA3QkFHenJ3dzZVdjZBY2xyNjE0anlsWWJhcWkyNWJZbGFLb3ZJSTVYVzNyM1VaOW1ZU0p3aW5BcHBxQ05QUCIsInVzZXJpZCI6IjRWNFdLUUpHR1E3TiIsImV4cCI6MTY4MjI1Nzc1OH0.ESq-Y3Y7PyzNELlKMC77haoAYWx_qmuSplz4xOl5XXTP2MPirZ-6z5okahmexcwWrNgkvFkOlJJdbVl47NiIwGvN5GkdFI0_pIXSg_gMqxaFw47jR-vvOeeUBSFMvCRDI_CwjLOOxLKWb7ymy3B0O-WDNGMrQNS0VsFSQNFFyB1gqdFgcCJtEaz2XMb88DeHC0VO0V3u1qlBxV4xdRjwmmpVaRGbB0fE5jt1-zXQLYtjfp_nHueRgQGxOBq9syJ0FIWyuLg7VJsdzpIUDhXlAJCaohRzC1JzkoJvY5T1Boweo4GXKAG4aWIIx1mjmnXOuCYfyrLG5VJ_nQEs30r63g ",
+								"type": "default",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetElementGroupsByProject($projectId: ID!) {\n    elementGroupsByProject(projectId: $projectId) {\n      pagination {\n        cursor\n      }\n      results{\n        name\n        id\n        alternativeIdentifiers{\n          fileUrn\n          fileVersionUrn\n        }\n      }\n    }\n}",
+								"variables": "{\n    \"projectId\":\"{{aec_project_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Task 4 – Get Elements from a Category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetElementsFromCategory($elementGroupId: ID!, $propertyFilter: String!) {\n    elementsByElementGroup(elementGroupId: $elementGroupId, filter: {query:$propertyFilter}) {\n      pagination {\n        cursor\n      }\n      results {\n        id\n        name\n        properties {\n          results {\n            name\n            value\n            definition {\n              units{\n                name\n              }\n            }\n          }\n        }\n      }\n    }\n}",
+								"variables": "{\n  \"elementGroupId\":\"{{aec_element_group_id}}\",\n  \"propertyFilter\":\"property.name.category==Walls\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Advanced Queries",
+			"item": [
+				{
+					"name": "Task 1 – Get ElementGroups Based on Metadata",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query elementGroupsByHub($hubId: ID!, $filter: ElementGroupFilterInput, $pagination: PaginationInput) {\n  elementGroupsByHub(hubId: $hubId, filter: $filter, pagination: $pagination) {\n    pagination {\n      cursor\n    }\n    results {\n      id\n      name\n      alternativeIdentifiers {\n        fileUrn\n        fileVersionUrn\n      }\n    }\n  }\n}",
+								"variables": "{\n  \"hubId\": \"{{aec_hub_id}}\",\n  \"filter\": {\n    \"query\": \"metadata.createdOn>2024-05-01T06:37:13.472Z\"\n  },\n  \"pagination\": {\n      \"limit\": 5\n  }\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Task 2 – Get Versions of an ElementGroup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ($elementGroupId: ID!) {\n  elementGroupAtTip(elementGroupId: $elementGroupId) {\n    id\n    name\n    alternativeIdentifiers {\n      fileUrn\n      fileVersionUrn\n    }\n    versionHistory {\n      versions {\n        results {\n          versionNumber\n          createdOn\n        }\n      }\n    }\n  }\n}",
+								"variables": "{\n    \"elementGroupId\" : \"{{aec_element_group_id}}\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Task 3 - Get Element Instances of a Particular Type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query ($elementGroupId: ID!, $propertyFilter: String!) {\n    elementsByElementGroup(\n        elementGroupId: $elementGroupId\n        filter: { query: $propertyFilter }\n        pagination: {limit: 5}\n    ) {\n        pagination {\n            cursor\n        }\n        results {\n            id\n            name\n            properties {\n                results {\n                name\n                value\n                }\n            }\n            referencedBy(name: \"Type\") {\n                totalCount\n                pagination {\n                    cursor\n                }\n                results {\n                    id\n                    name\n                    alternativeIdentifiers {\n                        externalElementId\n                    }\n                    properties {\n                        results {\n                            name\n                            value\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+								"variables": "{\n    \"elementGroupId\": \"{{aec_element_group_id}}\",\n    \"propertyFilter\": \"'property.name.category'=contains=Walls and 'property.name.Element Context'==Type and 'property.name.Element Name'=contains='Generic'\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Task 4 - Get Element Instances in a Category by Version",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetWallsElementsByElementGroupIdAtVersion($elementGroupId: ID!, $versionNumber: Int!, $propertyFilter: String!) {\n  elementsByElementGroupAtVersion(elementGroupId: $elementGroupId, versionNumber: $versionNumber, filter: { query: $propertyFilter}, pagination : { limit : 5 }) {\n    totalCount\n    pagination {\n      cursor\n    }\n    results {\n      id\n      name\n      properties {\n        results {\n          name\n          value\n          displayValue\n        }\n      }\n    }\n  }\n}",
+								"variables": "{\n    \"elementGroupId\" : \"{{aec_element_group_id}}\",\n    \"versionNumber\": 1,\n    \"propertyFilter\": \"property.name.category==Walls and 'property.name.Element Context'==Instance\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Task 5 – Get Project Elements with Specific Properties",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetElementsInProject($projectId: ID!, $propertyFilter: String!) {\n    elementsByProject(projectId: $projectId, filter: {query: $propertyFilter}) {\n        pagination {\n            cursor\n        }\n        results {\n            id\n            name\n            properties(\n                includeReferencesProperties: \"Type\"\n                filter: {names: [\"Family Name\", \"Element Name\", \"Element Context\", \"Fire Rating\",\"Length\"]}\n            ) {\n                results {\n                    name\n                    value\n                    displayValue\n                    definition {\n                        units{\n                        name\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+								"variables": "{\n    \"projectId\": \"{{aec_project_id}}\",\n    \"propertyFilter\": \"'property.name.Family Name'=='Basic Wall' and property.name.Length > 10 and 'property.name.Element Context'==Instance\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Task 6 – Get Elements by using Instances or Reference",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetInstancesOfConcreteMaterial($elementGroupId: ID!, $propertyFilter: String!) {\n    elementsByElementGroup(\n        elementGroupId: $elementGroupId\n        filter: {query: $propertyFilter}\n        pagination: {limit: 20}\n    ) {\n        totalCount\n        results {\n            id\n            name\n            referencedBy(name: \"Type\") {\n                results {\n                    id\n                    name\n                    properties {\n                        results {\n                        name\n                        value\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+								"variables": "{\n    \"elementGroupId\": \"{{aec_element_group_id}}\",\n    \"propertyFilter\": \"property.name.category==Materials and 'property.name.Element Name'=contains='Concrete'\"\n}"
+							}
+						},
+						"url": {
+							"raw": "{{aec-dm-url}}",
+							"host": [
+								"{{aec-dm-url}}"
+							]
+						},
+						"description": "Get the specified industry role from this project, and set to \"industry_role\"."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Prepare Environment Variables",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.clear();",
+							"",
+							"// Please change the following variables according to your account setting",
+							"// your APS App key",
+							"pm.environment.set(\"client_id\",     \"your APS client id\");",
+							"pm.environment.set(\"client_secret\", \"your APS client secret\");",
+							"",
+							"",
+							"// Change the following according to your ACC settings",
+							"pm.environment.set(\"account_name\",    \"Your ACC Account name\");",
+							"pm.environment.set(\"project_name\",    \"Your ACC project name\");",
+							"",
+							"pm.environment.set(\"base_domain\", \"https://developer.api.autodesk.com/\");",
+							"pm.environment.set(\"aec-dm-url\", \"https://developer.api.autodesk.com/aec/graphql\");",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "HEAD",
+				"header": [],
+				"url": {
+					"raw": "{{base_domain}}/health",
+					"host": [
+						"{{base_domain}}"
+					],
+					"path": [
+						"health"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "scope",
+				"value": "data:read",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://developer.api.autodesk.com/authentication/v2/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://developer.api.autodesk.com/authentication/v2/authorize",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{client_id}}",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{client_secret}}",
+				"type": "string"
+			},
+			{
+				"key": "tokenName",
+				"value": "3 Legged Token",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://www.getpostman.com/oauth2/callback",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
